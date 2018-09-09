@@ -6,13 +6,11 @@ import java.sql.SQLException;
 
 public class MyConnectionClass {
 
-    public static Connection getConnectionClass() throws Exception{
+    public Connection getConnectionClass() throws Exception{
         Connection con = null;
-
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://localhost/register_system", "root", "");
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/user_regis_login", "root", "");
         return con;
-
     }
 
 }

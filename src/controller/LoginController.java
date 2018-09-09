@@ -24,21 +24,12 @@ public class LoginController {
     @FXML private TextField usrName;
     @FXML private  TextField pwd;
 
-//    private MyConnectionClass myConnection;
-    private Connection connection;
-//
-//    @FXML
-//    public void initialize(){
-//        myConnection = new MyConnectionClass();
-//        connection = myConnection.getConnectionClass();
-//    }
-
     @FXML
     public void handleLoginBtnAction(ActionEvent actionEvent) throws Exception{
-        connection = MyConnectionClass.getConnectionClass();
-
-        String sql = "SELECT `username`, `password` FROM `user_info` WHERE `username` =" +
-                    usrName.getText() + "AND `password` =" + pwd.getText();
+        MyConnectionClass connectionClass = new MyConnectionClass();
+        Connection connection = connectionClass.getConnectionClass();
+        String sql = "SELECT username, password FROM user_info WHERE username ='" +
+                    usrName.getText() + "'AND password ='" + pwd.getText() + "'";
         ResultSet result = connection.prepareStatement(sql).executeQuery();
         if (result.next()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/showdetail.fxml"));
